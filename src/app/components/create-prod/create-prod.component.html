@@ -1,0 +1,27 @@
+<div class="container">
+  <h2 class="title">Add New Product</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Product Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter product name" />
+      <mat-error *ngIf="name?.hasError('required')">Product name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Price</mat-label>
+      <input matInput formControlName="price" placeholder="Enter price" type="number" />
+      <mat-error *ngIf="price?.hasError('required')">Price is required</mat-error>
+      <mat-error *ngIf="price?.hasError('min')">Price must be a positive number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Enter product description"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" type="submit" [disabled]="productForm.invalid" class="submit-button">
+      Add Product
+    </button>
+  </form>
+</div>
